@@ -6,7 +6,35 @@
 
 #IncludeRegexTransform: 
 
+../include/package.hpp
+
+../include/storage_types.hpp
+
+../include/types.hpp
+
+C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/main.cpp
+iostream
+-
+package.hpp
+C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/package.hpp
+types.hpp
+C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/types.hpp
+storage_types.hpp
+C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/storage_types.hpp
+
 C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/src/package.cpp
+package.hpp
+C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/src/package.hpp
+types.hpp
+C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/src/types.hpp
+storage_types.hpp
+C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/src/storage_types.hpp
 
 C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/src/storage_types.cpp
+package.hpp
+C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/src/package.hpp
+types.hpp
+C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/src/types.hpp
+storage_types.hpp
+C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/src/storage_types.hpp
 

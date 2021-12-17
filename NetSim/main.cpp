@@ -2,7 +2,8 @@
 #include "package.hpp"
 #include "types.hpp"
 #include "storage_types.hpp"
+
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    std::cout << "Welcome in spiulkolot!" << std::endl;
     return 0;
 }
