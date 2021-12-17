@@ -1,0 +1,12 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/src/package.cpp
+
+C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/src/storage_types.cpp
+
