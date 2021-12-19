@@ -7,10 +7,22 @@
 #IncludeRegexTransform: 
 
 ../include/package.hpp
+vector
+-
+types.hpp
+../include/types.hpp
 
 ../include/storage_types.hpp
+types.hpp
+../include/types.hpp
+iostream
+-
+list
+-
 
 ../include/types.hpp
+cstdint
+-
 
 C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/main.cpp
 iostream

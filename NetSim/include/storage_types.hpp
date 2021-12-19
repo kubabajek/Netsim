@@ -13,7 +13,6 @@ class IPackageStockpile
 {
 
 public:
-    virtual IpackageStockpile();
     virtual void push(Package&&);
     virtual bool empty() {return (0 == PackageQueue.size())}; //NOT WORKING LOLXD
     virtual size_type size();
