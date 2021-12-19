@@ -4,32 +4,38 @@
 #ifndef NETSIM_STORAGE_TYPES_HPP
 #define NETSIM_STORAGE_TYPES_HPP
 #include "types.hpp"
+#include "package.hpp"
 #include <iostream>
 #include <list>
 
-enum class PackageQueueType {FIFO, LIFO};
+enum class PackageQueueType
+{
+    FIFO,
+    LIFO
+};
 
 class IPackageStockpile
 {
-
 public:
     virtual void push(Package&&);
-    virtual bool empty() {return (0 == PackageQueue.size())}; //NOT WORKING LOLXD
+    virtual bool empty();
     virtual size_type size();
     virtual ~IPackageStockpile();
+
     using const_iterator  = std::list<Package>::const_iterator;
+};
+
+class IPackageQueue : public IPackageStockpile
+{
+private:
+    virtual Package pop();
+    virtual PackageQueueType get_queue_type();
 
 };
 
-
-class PackageQueue
+class PackageQueue : public IPackageQueue
 {
+private:
     PackageQueue(PackageQueueType type);
-};
-
-class IPackageQueue
-{
-public:
-
 };
 #endif //NETSIM_STORAGE_TYPES_HPP

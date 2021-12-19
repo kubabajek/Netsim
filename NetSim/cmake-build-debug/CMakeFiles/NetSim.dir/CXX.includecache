@@ -7,14 +7,16 @@
 #IncludeRegexTransform: 
 
 ../include/package.hpp
-vector
--
 types.hpp
 ../include/types.hpp
+vector
+-
 
 ../include/storage_types.hpp
 types.hpp
 ../include/types.hpp
+package.hpp
+../include/package.hpp
 iostream
 -
 list
@@ -24,25 +26,9 @@ list
 cstdint
 -
 
-C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/main.cpp
-iostream
--
-package.hpp
-C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/package.hpp
-types.hpp
-C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/types.hpp
-storage_types.hpp
-C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/storage_types.hpp
-
 C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/src/package.cpp
-package.hpp
-C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/src/package.hpp
-types.hpp
-C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/src/types.hpp
-storage_types.hpp
-C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/src/storage_types.hpp
-
-C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/src/storage_types.cpp
+algorithm
+-
 package.hpp
 C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/src/package.hpp
 types.hpp

@@ -1,10 +1,16 @@
 //
 // Created by Kuba on 17.12.2021.
 //
+
 #include <algorithm>
 #include "package.hpp"
 #include "types.hpp"
 #include "storage_types.hpp"
+
+ElementID Package::FREE_ID_ = 0;
+ElementID Package::HIGHEST_ = 0;
+std::vector<ElementID> Package::FREE_ID_LIST_ = {};
+std::vector<ElementID> Package::USED_ID_LIST_ = {};
 
 void Package::choose_new_free_ID()
 {
@@ -46,7 +52,7 @@ Package::Package(const ElementID new_id)
 
 Package::Package(Package &&)
 {
-    
+
 }
 
 Package::~Package()
