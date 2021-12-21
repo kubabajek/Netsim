@@ -2,34 +2,39 @@
 #include "types.hpp"
 #include "storage_types.hpp"
 
-
-void PackageQueue::push(Package&& a){
+void PackageQueue::push(Package&& a)
+{
     product_queue.emplace_back(Package(std::move(a)));
 }
 
-bool PackageQueue::empty(){
+bool PackageQueue::empty()
+{
     return (product_queue.empty());
 }
 
-size_t PackageQueue::size(){
+size_t PackageQueue::size()
+{
     return (product_queue.size());
 }
 
-Package PackageQueue::pop(){
-    Package taken;
-    switch(queue_type_){
+Package PackageQueue::pop()
+{
+    Package taken_package(-1);
+    switch(queue_type_)
+    {
         case (PackageQueueType::FIFO):
-            taken = Package(std::move(product_queue.front()));
+            taken_package = Package(std::move(product_queue.front()));
             product_queue.pop_front();
             break;
         case (PackageQueueType::LIFO):
-            taken = Package(std::move(product_queue.back()));
+            taken_package = Package(std::move(product_queue.back()));
             product_queue.pop_back();
             break;
     }
-    return taken;
+    return taken_package;
 }
 
-PackageQueueType PackageQueue::get_queue_type(){
+PackageQueueType PackageQueue::get_queue_type()
+{
     return queue_type_;
 }

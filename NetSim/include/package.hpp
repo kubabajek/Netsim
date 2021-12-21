@@ -11,6 +11,7 @@ public:
     Package& operator = (Package&&) noexcept;
     ElementID get_id() const {return ID_;};
     ~Package();
+
 private:
     static void choose_new_free_ID();
     static ElementID FREE_ID_;

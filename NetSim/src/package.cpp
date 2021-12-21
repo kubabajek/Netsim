@@ -8,7 +8,8 @@ ElementID Package::HIGHEST_ = 0;
 std::vector<ElementID> Package::FREE_ID_LIST_ = {};
 std::vector<ElementID> Package::USED_ID_LIST_ = {};
 
-void Package::choose_new_free_ID(){
+void Package::choose_new_free_ID()
+{
     if (FREE_ID_LIST_.empty()){
         if( HIGHEST_ > FREE_ID_)
             FREE_ID_ = HIGHEST_;
@@ -25,14 +26,15 @@ void Package::choose_new_free_ID(){
     }
 }
 
-Package::Package(){
+Package::Package()
+{
     ID_ = FREE_ID_;
     USED_ID_LIST_.push_back(ID_);
     choose_new_free_ID();
 }
 
-
-Package::Package(const ElementID new_id){
+Package::Package(const ElementID new_id)
+{
     if(std::find(USED_ID_LIST_.begin(), USED_ID_LIST_.end(), new_id) != USED_ID_LIST_.end())
         throw std::runtime_error("Id is already used");
     ID_ = new_id;
@@ -42,21 +44,24 @@ Package::Package(const ElementID new_id){
     USED_ID_LIST_.push_back(ID_);
 }
 
+Package::Package(Package&& old) noexcept
+{
+    ID_= old.ID_;
+    old.ID_ = -1;
+}
 
-Package::~Package(){
+Package& Package::operator = (Package&& old) noexcept
+{
+    ID_ = old.ID_;
+    old.ID_ = -1;
+    return *this;
+}
+
+Package::~Package()
+{
     FREE_ID_LIST_.push_back(ID_);
     USED_ID_LIST_.erase(std::find(FREE_ID_LIST_.begin(), FREE_ID_LIST_.end(), ID_));
     choose_new_free_ID();
 }
 
-Package::Package(Package&& old) noexcept {
-    ID_=old.ID_;
-    old.ID_=-1;
-}
-
-Package& Package::operator=(Package&& old) noexcept {
-    ID_ = old.ID_;
-    old.ID_=-1;
-    return *this;
-}
 
