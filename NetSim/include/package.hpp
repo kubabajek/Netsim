@@ -13,11 +13,8 @@ public:
     ~Package();
 
 private:
-    static void choose_new_free_ID();
-    static ElementID FREE_ID_;
-    static ElementID HIGHEST_;
-    static std::vector<ElementID> FREE_ID_LIST_;
-    static std::vector<ElementID> USED_ID_LIST_;
+    static std::vector<ElementID> usedlist_;
+    static std::vector<ElementID> freelist_;
     ElementID ID_;
 };
 

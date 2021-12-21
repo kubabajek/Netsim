@@ -29,11 +29,11 @@ public:
 class PackageQueue : public IPackageQueue, public IPackageStockpile{
 public:
     explicit PackageQueue(PackageQueueType x) : queue_type_(x) {};
-    void push(Package&&) override;
-    bool empty() override;
-    size_t size() override;
+    void push(Package&& product) override {product_queue.emplace_back(Package(std::move(product)));};
+    bool empty() override {return (product_queue.empty());};
+    size_t size() override {return (product_queue.size());};
     Package pop() override;
-    PackageQueueType get_queue_type() override;
+    PackageQueueType get_queue_type() override {return queue_type_;};
     ~PackageQueue() override = default;
 private:
     std::list<Package> product_queue;
