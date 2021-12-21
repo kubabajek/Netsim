@@ -28,7 +28,7 @@ public:
 
 class PackageQueue : public IPackageQueue, public IPackageStockpile{
 public:
-    PackageQueue(PackageQueueType x) : queue_type_(x) {};
+    explicit PackageQueue(PackageQueueType x) : queue_type_(x) {};
     void push(Package&&) override;
     bool empty() override;
     size_t size() override;

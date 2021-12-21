@@ -7,8 +7,8 @@ class Package{
 public:
     Package();
     explicit Package(ElementID);
-    Package(Package&&) = default;
-    Package& operator = (Package&&) = default;
+    Package(Package&&) noexcept;
+    Package& operator = (Package&&) noexcept;
     ElementID get_id() const {return ID_;};
     ~Package();
 private:

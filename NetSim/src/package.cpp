@@ -49,3 +49,14 @@ Package::~Package(){
     choose_new_free_ID();
 }
 
+Package::Package(Package&& old) noexcept {
+    ID_=old.ID_;
+    old.ID_=-1;
+}
+
+Package& Package::operator=(Package&& old) noexcept {
+    ID_ = old.ID_;
+    old.ID_=-1;
+    return *this;
+}
+
