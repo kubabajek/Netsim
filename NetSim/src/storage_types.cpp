@@ -19,14 +19,16 @@ size_t PackageQueue::size()
 
 Package PackageQueue::pop()
 {
-    Package taken_package(-1);
+    Package taken_package(0);
     switch(queue_type_)
     {
         case (PackageQueueType::FIFO):
+            //printf("FIFO pop\n");
             taken_package = Package(std::move(product_queue.front()));
             product_queue.pop_front();
             break;
         case (PackageQueueType::LIFO):
+            //printf("LIFO pop\n");
             taken_package = Package(std::move(product_queue.back()));
             product_queue.pop_back();
             break;

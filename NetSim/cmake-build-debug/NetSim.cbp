@@ -404,7 +404,10 @@
 		<Unit filename="C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/test/main_gtest.cpp">
 			<Option target="NetSim_tests"/>
 		</Unit>
-		<Unit filename="C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/test/test_test.cpp">
+		<Unit filename="C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/test/test_package.cpp">
+			<Option target="NetSim_tests"/>
+		</Unit>
+		<Unit filename="C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/test/test_storage_types.cpp">
 			<Option target="NetSim_tests"/>
 		</Unit>
 		<Unit filename="C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/CMakeLists.txt">

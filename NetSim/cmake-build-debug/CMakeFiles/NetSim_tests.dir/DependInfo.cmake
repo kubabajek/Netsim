@@ -7,7 +7,8 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/src/package.cpp" "C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/cmake-build-debug/CMakeFiles/NetSim_tests.dir/src/package.cpp.obj"
   "C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/src/storage_types.cpp" "C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/cmake-build-debug/CMakeFiles/NetSim_tests.dir/src/storage_types.cpp.obj"
   "C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/test/main_gtest.cpp" "C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/cmake-build-debug/CMakeFiles/NetSim_tests.dir/test/main_gtest.cpp.obj"
-  "C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/test/test_test.cpp" "C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/cmake-build-debug/CMakeFiles/NetSim_tests.dir/test/test_test.cpp.obj"
+  "C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/test/test_package.cpp" "C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/cmake-build-debug/CMakeFiles/NetSim_tests.dir/test/test_package.cpp.obj"
+  "C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/test/test_storage_types.cpp" "C:/Users/Kuba/Desktop/SIECI/Projekt/NetSim/cmake-build-debug/CMakeFiles/NetSim_tests.dir/test/test_storage_types.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

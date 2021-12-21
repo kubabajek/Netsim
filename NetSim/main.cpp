@@ -5,5 +5,6 @@
 
 int main() {
     std::cout << "Welcome in spiulkolot!" << std::endl;
+
     return 0;
 }

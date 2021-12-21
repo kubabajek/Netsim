@@ -17,14 +17,14 @@ add_executable(NetSim ${SOURCE_FILES} main.cpp)
 
 #Google Test Framework
 set(SOURCES_FILES_TESTS
-        test/test_test.cpp
+        #test/test_test.cpp
         #test/test_Factory.cpp
         #test/test_factory_io.cpp
         #test/test_nodes.cpp
-        #test/test_package.cpp
+        test/test_package.cpp
         #test/test_reports.cpp
         #test/test_simulate.cpp
-        #test/test_storage_types.cpp
+        test/test_storage_types.cpp
         )
 
 add_executable(NetSim_tests ${SOURCE_FILES} ${SOURCES_FILES_TESTS} test/main_gtest.cpp)
