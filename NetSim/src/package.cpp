@@ -3,8 +3,8 @@
 #include "types.hpp"
 #include "storage_types.hpp"
 
-ElementID Package::FREE_ID_ = 0;
-ElementID Package::HIGHEST_ = 0;
+ElementID Package::FREE_ID_ = 1;
+ElementID Package::HIGHEST_ = 1;
 std::vector<ElementID> Package::FREE_ID_LIST_ = {};
 std::vector<ElementID> Package::USED_ID_LIST_ = {};
 
