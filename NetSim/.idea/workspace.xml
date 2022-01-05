@@ -16,17 +16,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c98c9251-f8e9-4188-98ce-c0e11453d197" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/include/factory.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/include/helpers.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/include/nodes.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/factory.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/helpers.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/nodes.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/types.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/include/types.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-    </list>
+    <list default="true" id="c98c9251-f8e9-4188-98ce-c0e11453d197" name="Default Changelist" comment="part2_Incomplete_package_sender" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -117,8 +107,16 @@
       <workItem from="1640907836121" duration="47000" />
       <workItem from="1641299321386" duration="946000" />
       <workItem from="1641300501574" duration="4386000" />
-      <workItem from="1641395483967" duration="13515000" />
+      <workItem from="1641395483967" duration="13831000" />
     </task>
+    <task id="LOCAL-00001" summary="part2_Incomplete_package_sender">
+      <created>1641410202453</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1641410202453</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -135,5 +133,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="part2_Incomplete_package_sender" />
+    <option name="LAST_COMMIT_MESSAGE" value="part2_Incomplete_package_sender" />
   </component>
 </project>
