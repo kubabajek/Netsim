@@ -10,6 +10,6 @@ void print(std::vector<ElementID> a) {
 }
 
 int main() {
-    std::cout << "Welcome in spiulkolot!" << std::endl;
+    std::cout << "Welcome in spiulkolot! =^.^=" << std::endl;
     return 0;
 }

@@ -11,6 +11,9 @@ include_directories(
 set(SOURCE_FILES
         src/package.cpp
         src/storage_types.cpp
+        src/factory.cpp
+        src/helpers.cpp
+        src/nodes.cpp
 )
 
 add_executable(NetSim ${SOURCE_FILES} main.cpp)
@@ -21,10 +24,10 @@ set(SOURCES_FILES_TESTS
         #test/test_Factory.cpp
         #test/test_factory_io.cpp
         #test/test_nodes.cpp
-        test/test_package.cpp
+        #test/test_package.cpp
         #test/test_reports.cpp
         #test/test_simulate.cpp
-        test/test_storage_types.cpp
+        #test/test_storage_types.cpp
         )
 
 add_executable(NetSim_tests ${SOURCE_FILES} ${SOURCES_FILES_TESTS} test/main_gtest.cpp)
@@ -37,4 +40,4 @@ target_include_directories(NetSim_tests PUBLIC
 
 add_subdirectory(googletest-master)
 target_link_libraries(NetSim_tests gmock)
-target_compile_definitions(NetSim PUBLIC EXERCISE_ID=1)
+target_compile_definitions(NetSim PUBLIC EXERCISE_ID=2)
