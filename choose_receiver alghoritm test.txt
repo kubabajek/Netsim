@@ -1,0 +1,25 @@
+    std::map<std::string, double> preferences{
+            {"Pierwszy", 0.6},
+            {"Drugi", 0.3},
+            {"Trzeci", 0.1}
+    };
+
+    //double pb = default_probability_generator();
+    //double pb = 0.1;
+    for(double pb=0.01;pb<1;pb+=0.1){
+        auto iterator = std::begin(preferences);
+        auto end_it = std::end(preferences);
+        end_it--;
+        double lower_scope=0;
+        double higher_scope=iterator->second;
+        while(iterator!=end_it){
+            if (pb>=lower_scope and pb<higher_scope) {
+                break;
+            }
+            lower_scope=higher_scope;
+            iterator++;
+            higher_scope+=iterator->second;
+        }
+        std::cout<<iterator->first<<std::endl;
+        //std::cout<<std::endl<<iterator->first<<std::endl;
+    }
