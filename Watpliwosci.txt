@@ -1,0 +1,9 @@
+1.Każdy nowy dodawany odbiorca produktu ma początkowe prawdopodobieństwo = 1
+2.Podczas dodawania nowego odbiorcy nie wiemy jakie mieli już dodani przez skalowaniem
+3.Brak iteratorów w interfejsie IPackageReceiver (chcą je w konspekcie) 
+4.Brak przechowywania informacji o rodzaju węzła w klasie Ramp, Worker, Storehouse (enum)
+5.IPacketReceiver nie jest w pełni wirutalna mimo, że jest interfejsem, przechowuje teraz
+ID_ i metodę je zwracającą, która jest dziedziczona przez odbiorców.
+Prawdopodbnie tak chcieli mieć napisaną tę funkcję, bo wygląda na to, że mocki w testach
+wymagają takiej jego budowy do stworzenia się.
+
