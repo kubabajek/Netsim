@@ -41,7 +41,7 @@ IPackageReceiver* ReceiverPreferences::choose_receiver() {
 
 void ReceiverPreferences::add_receiver(IPackageReceiver *r) {
     if (preferences_.find(r) == preferences_.end()) {
-        double new_receiver_p = 1; //KAZDY NOWY WCHODZI Z PRAWDOPODOBIENSTWEM 1!!!!!!!!!!!!!!
+        double new_receiver_p = 1; //KAZDY NOWY WCHODZI Z PRAWDOPODOBIENSTWEM 1!!
         double all_p_divisor = 1 + new_receiver_p;
         if (preferences_.empty())
             all_p_divisor = new_receiver_p;
@@ -64,13 +64,13 @@ void ReceiverPreferences::remove_receiver(IPackageReceiver *r) {
 }
 
 void Ramp::deliver_goods(Time t) { //Wywolywanie w kazdej turze symulacji. Faza: Dostawa
-    if ((double(t-1)/double(di_) == floor(double(t-1)/double(di_))) or t==1) {
+    if ((double(t-1)/double(di_) == floor(double(t-1)/double(di_))) or t==1) { // t % di == 0 then spawn package
         push_package(Package());
     }
 }
 
 void Storehouse::receive_package(Package &&p) {
-    d_->push(std::move(p));
+    d_->push(std::move(p)); // can be moved to .hpp file (one liner)
 }
 
 void Worker::receive_package(Package &&p) {
@@ -91,12 +91,14 @@ void Worker::do_work(Time t) {
 
 Worker::Worker(ElementID id, TimeOffset pd, std::unique_ptr<IPackageQueue> q) {
     id_=id;
+    rt_=ReceiverType::WORKER;
     pd_=pd;
     q_=std::move(q);
 }
 
 Storehouse::Storehouse(ElementID id, std::unique_ptr<IPackageStockpile> d) {
     id_ = id;
+    rt_=ReceiverType::STOREHOUSE;
     d_ = std::move(d);
 
 }

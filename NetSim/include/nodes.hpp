@@ -13,7 +13,6 @@
 #include "helpers.hpp"
 
 enum class ReceiverType{
-    RAMP,
     WORKER,
     STOREHOUSE
 };
@@ -23,9 +22,12 @@ public:
     using const_iterator = IPackageStockpile::const_iterator;
     virtual void receive_package(Package&& p)=0;
     ElementID get_id() const {return id_;};
+    ReceiverType get_receiver_type() const {return rt_;};
+
     virtual ~IPackageReceiver() = default;
 protected:
     ElementID id_;
+    ReceiverType rt_;
 };
 
 class Storehouse : public IPackageReceiver{
@@ -80,6 +82,7 @@ public:
     ElementID get_id() const {return id_;};
 
 private:
+
     ElementID id_;
     TimeOffset di_;
 };
