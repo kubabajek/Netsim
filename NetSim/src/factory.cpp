@@ -4,7 +4,5 @@
 
 #include <factory.hpp>
 
-void Factory::add_ramp(Ramp &&) {
-
-}
-
+//void Factory::remove_receiver(NodeCollection<IPackageReceiver> &collection, ElementID id) {
+//}

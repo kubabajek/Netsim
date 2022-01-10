@@ -19,54 +19,24 @@ public:
     const_iterator cbegin() const { return nodes_.cbegin(); }
     const_iterator cend() const { return nodes_.cend(); }
 
+    NodeCollection<Node>::iterator find_by_id( ElementID id){
+        return std::find_if(nodes_.begin(),--nodes_.end(),[id](const auto& node){return node.get_id() == id;});
+    }
+    NodeCollection<Node>::const_iterator find_by_id( ElementID id) const{
+        return std::find_if(nodes_.begin(),--nodes_.end(),[id](const auto& node){return node.get_id() == id;});
+    }
+
     void add(Node&& node){
-        //if juz jest taki obiekt w kontenerze
         nodes_.emplace_back(std::move(node));
     };
-    void remove_by_id(ElementID id){
-        bool removed = false;
-        for (auto it = nodes_.cbegin(); it != nodes_.cend(); ++it){
-            if(it->get_id()==id){
-                nodes_.erase(it);
-                removed = true;
-                break;
-            }
-        }
-        if (not(removed)){
-            std::cout<<"REMOVING ELEMENT WHICH DOESNT EXIST IN CONTAINER - DIDN't DELETE!"<<std::endl;
-        }
+    void remove_by_id(ElementID id) {
+        const_iterator it = find_by_id(id);
+        if (it->get_id() == id)
+            nodes_.erase(it);
+        else
+            std::cout<<"Object to delete doesn't exist in collection"<<std::endl;
     }
-//    NodeCollection<Node>::iterator find_by_id( ElementID id){
-//        bool found = false;
-//        iterator found_iterator = nodes_.end();
-//        for (iterator it = nodes_.begin(); it != nodes_.end(); ++it){
-//            if(it->get_id()==id){
-//                found_iterator=it;
-//                found = true;
-//                break;
-//            }
-//        }
-//        if (not(found)){
-//            std::cout<<"ELEMENT NOT FOUND"<<std::endl;
-//        }
-//    }
-    NodeCollection<Node>::iterator find_by_id( ElementID id){
-        std::find_if(nodes_.begin();)
-    }
-    NodeCollection<Node>::const_iterator find_by_id( ElementID id) const {
-        bool found = false;
-        const_iterator found_iterator = nodes_.end();
-        for (const_iterator it = nodes_.cbegin(); it != nodes_.cend(); ++it){
-            if(it->get_id()==id){
-                found_iterator=it;
-                found = true;
-                break;
-            }
-        }
-        if (not(found)){
-            std::cout<<"ELEMENT NOT FOUND"<<std::endl;
-        }
-    }
+
 private:
     container_t nodes_;
 };
@@ -74,9 +44,9 @@ private:
 
 class Factory{
 public:
-    void add_ramp(Ramp&&);
-    void add_worker(Worker&&);
-    void add_storehouse(Storehouse&&);
+    void add_ramp(Ramp&& ramp_to_add) {ramps_.add(std::move(ramp_to_add));};
+    void add_worker(Worker&& worker_to_add) {workers_.add(std::move(worker_to_add));};
+    void add_storehouse(Storehouse&& storehouse_to_add){storehouses_.add(std::move(storehouse_to_add));};
     void remove_ramp(ElementID);
     void remove_worker(ElementID);
     void remove_storehouse(ElementID);
@@ -92,11 +62,16 @@ public:
     NodeCollection<Ramp>::const_iterator ramp_cend() const {return ramps_.cend();};
     NodeCollection<Worker>::const_iterator worker_cend() const {return workers_.cend();};
     NodeCollection<Storehouse>::const_iterator storehouse_cend() const {return storehouses_.cend();};
+    bool is_consistent();
+    void do_deliveries(Time);
+    void do_package_passing();
+    void do_work(Time);
 private:
     NodeCollection<Worker> workers_;
     NodeCollection<Ramp> ramps_;
     NodeCollection<Storehouse> storehouses_;
-    void remove_receiver(NodeCollection<IPackageReceiver>& collection, ElementID id);
+    void remove_receiver(NodeCollection<Worker>& collection, ElementID id) {collection.remove_by_id(id);};
+    void remove_receiver(NodeCollection<Storehouse>& collection, ElementID id) {collection.remove_by_id(id);};
 };
 
 
