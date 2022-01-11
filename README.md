@@ -1,2 +1,2 @@
-# Projekt
-Zróbcie za mnie plz
+# NIE ŚPIMY!
+Ale, zróbcie za mnie plz

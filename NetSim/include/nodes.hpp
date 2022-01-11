@@ -23,7 +23,6 @@ public:
     virtual void receive_package(Package&& p)=0;
     ElementID get_id() const {return id_;};
     ReceiverType get_receiver_type() const {return rt_;};
-
     virtual ~IPackageReceiver() = default;
 protected:
     ElementID id_;
@@ -37,7 +36,7 @@ public:
     const_iterator cbegin() { return d_->begin(); }
     const_iterator cend() { return d_->end(); }
     explicit Storehouse(ElementID id, std::unique_ptr<IPackageStockpile> d = std::make_unique<PackageQueue>(PackageQueueType::FIFO));
-    void receive_package(Package &&p) override;
+    void receive_package(Package &&p) override {d_->push(std::move(p));};
 private:
     std::unique_ptr<IPackageStockpile> d_;
 };
@@ -97,11 +96,12 @@ public:
     void do_work(Time t);
     TimeOffset get_processing_duration() const {return pd_;};
     Time get_package_processing_start_time() const {return processing_start_time_;};
-    void receive_package(Package&& p) override;
+    void receive_package(Package&& p) override {q_->push(std::move(p));};
 private:
     TimeOffset pd_;
     Time processing_start_time_=1;
     std::unique_ptr<IPackageQueue> q_;
+    std::optional<Package> WorkingBuffer_;
 };
 #endif //NETSIM_NODES_HPP
 
