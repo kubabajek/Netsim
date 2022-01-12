@@ -7,6 +7,12 @@
 #include "types.hpp"
 #include "nodes.hpp"
 
+enum class State{
+    VISITED,
+    UNVISITED,
+    VERYFIED
+};
+
 template<class Node>
 class NodeCollection
 {
@@ -34,8 +40,8 @@ public:
             nodes_.erase(it);
             if_removed_flag = true;
         }
-        else
-            std::cout<<"Object to delete doesn't exist in collection"<<std::endl;
+//        else
+//            std::cout<<"Object to delete doesn't exist in collection - nothing changed"<<std::endl;
         return if_removed_flag;
     }
 
@@ -75,6 +81,7 @@ private:
 
     template<class Node>
     void remove_receiver(NodeCollection<Node>& collection, ElementID id);
+    bool is_receiver_connected_to_storehouse(PackageSender* sender, std::map<PackageSender*,State> map);
 };
 
 template <class Node>
@@ -90,6 +97,7 @@ void Factory::remove_receiver(NodeCollection<Node> &collection, ElementID id) {
         }
     }
 }
+
 
 
 #endif //NETSIM_FACTORY_HPP
