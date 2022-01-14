@@ -57,7 +57,7 @@ public:
     void add_receiver(IPackageReceiver* r);
     void remove_receiver(IPackageReceiver* r);
     IPackageReceiver* choose_receiver();
-    preferences_t& get_preferences() {return preferences_;};
+    preferences_t get_preferences() const {return preferences_;}; //COPIED OBJECT!!! CAUTION, WET FLOOR =^.^=
 };
 
 class PackageSender{
@@ -97,6 +97,8 @@ public:
     TimeOffset get_processing_duration() const {return pd_;};
     Time get_package_processing_start_time() const {return processing_start_time_;};
     void receive_package(Package&& p) override {q_->push(std::move(p));};
+    const IPackageQueue* get_queue() const {return &(*q_);};
+    const std::optional<Package>& get_processing_buffer() {return WorkingBuffer_;};
 private:
     TimeOffset pd_;
     Time processing_start_time_=1;
@@ -104,4 +106,3 @@ private:
     std::optional<Package> WorkingBuffer_;
 };
 #endif //NETSIM_NODES_HPP
-

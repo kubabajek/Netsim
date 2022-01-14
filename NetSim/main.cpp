@@ -6,6 +6,7 @@
 #include "helpers.hpp"
 #include "nodes.hpp"
 #include <map>
+#include <sstream>
 
 void print(std::vector<ElementID> a) {
     for (unsigned int i : a)

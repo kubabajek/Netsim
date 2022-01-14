@@ -64,7 +64,7 @@ public:
     NodeCollection<Ramp>::const_iterator find_ramp_by_id(ElementID id) const {return collection_ramps_.find_by_id(id);};
     NodeCollection<Worker>::const_iterator find_worker_by_id(ElementID id) const {return collection_workers_.find_by_id(id);};
     NodeCollection<Storehouse>::const_iterator find_storehouse_by_id(ElementID id) const {return collection_storehouses_.find_by_id(id);};
-    NodeCollection<Ramp>::const_iterator ramp_cbegin(ElementID) const {return collection_ramps_.cbegin();};
+    NodeCollection<Ramp>::const_iterator ramp_cbegin() const {return collection_ramps_.cbegin();};
     NodeCollection<Worker>::const_iterator worker_cbegin() const {return collection_workers_.cbegin();};
     NodeCollection<Storehouse>::const_iterator storehouse_cbegin()const {return collection_storehouses_.cbegin();};
     NodeCollection<Ramp>::const_iterator ramp_cend() const {return collection_ramps_.cend();};
@@ -97,6 +97,26 @@ void Factory::remove_receiver(NodeCollection<Node> &collection, ElementID id) {
         }
     }
 }
+
+// IO
+enum class ElementType{
+    RAMP,
+    WORKER,
+    STOREHOUSE,
+    LINK
+};
+typedef struct {
+    ElementType element_type;
+    std::map<std::string,std::string> parameters;
+}ParsedLineData;
+
+Factory load_factory_structure(std::istream& is);
+void save_factory_structure(Factory& factory, std::ostream& os);
+ParsedLineData parse_line(const std::string& line);
+
+
+
+
 
 
 

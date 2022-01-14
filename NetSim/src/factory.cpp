@@ -3,6 +3,9 @@
 //
 
 #include <factory.hpp>
+#include <istream>
+#include <string>
+#include <sstream>
 
 void Factory::do_deliveries(Time t) {
     for (auto & ramp_from_collection : collection_ramps_){
@@ -90,3 +93,52 @@ bool Factory::is_receiver_connected_to_storehouse(PackageSender* sender, std::ma
     else
         throw std::logic_error("Error");
 }
+
+// IO IO IO IO IO IO IO IO IO IO IO IO IO IO IO IO IO
+ParsedLineData parse_line(const std::string& line) {
+    ParsedLineData new_parsed_line_data;
+    std::vector<std::string> tokens;
+    std::string token;
+    char delimiter = ' ';
+    std::istringstream token_stream(line);
+    while (std::getline(token_stream, token, delimiter))
+        tokens.push_back(token);
+
+    if (tokens.front() == "RAMP")
+        new_parsed_line_data.element_type = ElementType::RAMP;
+    else if (tokens.front() == "WORKER")
+        new_parsed_line_data.element_type = ElementType::WORKER;
+    else if (tokens.front() == "STOREHOUSE")
+        new_parsed_line_data.element_type = ElementType::STOREHOUSE;
+    else if (tokens.front() == "LINK")
+        new_parsed_line_data.element_type = ElementType::LINK;
+    else
+        throw std::logic_error("Gdzie pieniadze sa za las");
+
+    tokens.erase(tokens.begin()); //Pozostawia same pary klucz-wartosc w wektorze tokens
+
+    for (std::string& single_token : tokens) {
+        std::vector<std::string> all_two_values_from_token;
+        std::string single_value_from_token;
+        char delimiter2 = '=';
+        std::istringstream token_stream2(single_token);
+        while (std::getline(token_stream2,single_value_from_token, delimiter2))
+            all_two_values_from_token.push_back(single_value_from_token);
+
+        auto pair_from_token = std::make_pair(all_two_values_from_token[0],all_two_values_from_token[1]);
+        new_parsed_line_data.parameters.insert(pair_from_token);
+    }
+    return new_parsed_line_data;
+}
+
+
+Factory load_factory_structure(std::istream& is){
+
+}
+
+void save_factory_structure(Factory& factory, std::ostream& os){
+
+}
+
+
+

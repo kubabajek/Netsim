@@ -65,6 +65,7 @@ IPackageReceiver* ReceiverPreferences::choose_receiver() {
 //    }
 //}
 
+//                  Oskar's algorithm
 void ReceiverPreferences::add_receiver(IPackageReceiver *r) {
     if (preferences_.find(r) == preferences_.end()) { //doda sie tylko gdy jeszcze go nie bylo dodanego do odbiorcow
         preferences_.insert(std::pair<IPackageReceiver *, double>(r, 0));
