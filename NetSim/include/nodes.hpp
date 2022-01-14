@@ -41,7 +41,7 @@ private:
     std::unique_ptr<IPackageStockpile> d_;
 };
 
-class ReceiverPreferences{ //Pamiętaj, aby zapewnić użytkownikom tego szablonu dostęp do wszystkich metod “tylko do odczytu” [c]begin() i [c]end() kontenera użytego do przechowywania preferencji (tj. łącznie do 4 metod).
+class ReceiverPreferences{
 public:
     using preferences_t = std::map<IPackageReceiver*, double>;
     using const_iterator = preferences_t::const_iterator;
@@ -97,7 +97,7 @@ public:
     TimeOffset get_processing_duration() const {return pd_;};
     Time get_package_processing_start_time() const {return processing_start_time_;};
     void receive_package(Package&& p) override {q_->push(std::move(p));};
-    const IPackageQueue* get_queue() const {return &(*q_);};
+    IPackageQueue* get_queue() const {return &(*q_);};
     const std::optional<Package>& get_processing_buffer() {return WorkingBuffer_;};
 private:
     TimeOffset pd_;

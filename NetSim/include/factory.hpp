@@ -98,21 +98,42 @@ void Factory::remove_receiver(NodeCollection<Node> &collection, ElementID id) {
     }
 }
 
-// IO
+// IO IO IO IO IO IO IO IO IO IO IO
 enum class ElementType{
-    RAMP,
+    LOADING_RAMP,
     WORKER,
     STOREHOUSE,
     LINK
 };
+enum class NodeType{
+    RAMP,
+    WORKER,
+    STORE
+};
+static std::map<std::string, PackageQueueType> QueueTypeMap = {
+        {"LIFO", PackageQueueType::LIFO},
+        {"FIFO", PackageQueueType::FIFO}
+};
+static std::map<std::string, NodeType> NodeTypeMap = {
+        {"ramp",NodeType::RAMP},
+        {"worker",NodeType::WORKER},
+        {"store",NodeType::STORE}
+};
+static std::map<std::string, ElementType> ElementTypeMap = {
+        {"LOADING_RAMP",ElementType::LOADING_RAMP},
+        {"WORKER",ElementType::WORKER},
+        {"STOREHOUSE",ElementType::STOREHOUSE},
+        {"LINK",ElementType::LINK}
+};
+
 typedef struct {
     ElementType element_type;
     std::map<std::string,std::string> parameters;
 }ParsedLineData;
 
+ParsedLineData parse_line(const std::string& line);
 Factory load_factory_structure(std::istream& is);
 void save_factory_structure(Factory& factory, std::ostream& os);
-ParsedLineData parse_line(const std::string& line);
 
 
 
