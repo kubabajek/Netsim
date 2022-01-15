@@ -26,7 +26,7 @@ set(SOURCES_FILES_TESTS
         test/test_factory_io.cpp
         test/test_nodes.cpp
         test/test_package.cpp
-        #test/test_reports.cpp
+        test/test_reports.cpp
         #test/test_simulate.cpp
         test/test_storage_types.cpp
         )
@@ -41,5 +41,5 @@ target_include_directories(NetSim_tests PUBLIC
 
 add_subdirectory(googletest-master)
 target_link_libraries(NetSim_tests gmock)
-target_compile_definitions(NetSim PUBLIC EXERCISE_ID=EXERCISE_ID_FACTORY)
-target_compile_definitions(NetSim_tests PUBLIC EXERCISE_ID=EXERCISE_ID_FACTORY)
+target_compile_definitions(NetSim PUBLIC EXERCISE_ID=REPORTING)
+target_compile_definitions(NetSim_tests PUBLIC EXERCISE_ID=REPORTING)

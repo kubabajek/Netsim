@@ -100,10 +100,11 @@ void Worker::do_work(Time t) {
         } else
             WorkingBuffer_ = std::nullopt;
     }
-    else {
-        if (processing_start_time_ + pd_ -1 == t) //skonczenie pracy nad produktem (-1 żeby zwrócić produkt w odpowiednim momencie)
+    if (WorkingBuffer_ != std::nullopt)
+        if (processing_start_time_ + pd_ -1 == t) { //skonczenie pracy nad produktem (-1 żeby zwrócić produkt w odpowiednim momencie)
             push_package(std::move(WorkingBuffer_.value()));
-    }
+            WorkingBuffer_ = std::nullopt;
+        }
 }
 
 Worker::Worker(ElementID id, TimeOffset pd, std::unique_ptr<IPackageQueue> q) {

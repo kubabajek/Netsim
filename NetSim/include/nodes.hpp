@@ -31,10 +31,10 @@ protected:
 
 class Storehouse : public IPackageReceiver{
 public:
-    const_iterator begin() { return d_->begin(); }
-    const_iterator end() { return d_->end(); }
-    const_iterator cbegin() { return d_->begin(); }
-    const_iterator cend() { return d_->end(); }
+    const_iterator begin() const { return d_->begin(); }
+    const_iterator end() const { return d_->end(); }
+    const_iterator cbegin() const { return d_->begin(); }
+    const_iterator cend() const { return d_->end(); }
     explicit Storehouse(ElementID id, std::unique_ptr<IPackageStockpile> d = std::make_unique<PackageQueue>(PackageQueueType::FIFO));
     void receive_package(Package &&p) override {d_->push(std::move(p));};
 private:
@@ -45,10 +45,10 @@ class ReceiverPreferences{
 public:
     using preferences_t = std::map<IPackageReceiver*, double>;
     using const_iterator = preferences_t::const_iterator;
-    const_iterator begin() { return preferences_.begin(); }
-    const_iterator end() { return preferences_.end(); }
-    const_iterator cbegin() { return preferences_.begin(); }
-    const_iterator cend() { return preferences_.end(); }
+    const_iterator begin() const { return preferences_.begin(); }
+    const_iterator end() const { return preferences_.end(); }
+    const_iterator cbegin() const { return preferences_.begin(); }
+    const_iterator cend() const { return preferences_.end(); }
 
     preferences_t preferences_; //Publiczna, żeby PackageSender miał do niej dostęp w relacji kompozycji
     ProbabilityGenerator generator_;
@@ -66,7 +66,7 @@ public:
     PackageSender() : PackageBuffer_(std::nullopt){};
     PackageSender(PackageSender&&) = default;
     void send_package();
-    std::optional<Package>& get_sending_buffer() {return PackageBuffer_;};
+    const std::optional<Package>& get_sending_buffer() const {return PackageBuffer_;};
 
 protected:
     void push_package(Package&& product) {PackageBuffer_ = Package(std::move(product));};
@@ -98,7 +98,7 @@ public:
     Time get_package_processing_start_time() const {return processing_start_time_;};
     void receive_package(Package&& p) override {q_->push(std::move(p));};
     IPackageQueue* get_queue() const {return &(*q_);};
-    const std::optional<Package>& get_processing_buffer() {return WorkingBuffer_;};
+    const std::optional<Package>& get_processing_buffer() const {return WorkingBuffer_;};
 private:
     TimeOffset pd_;
     Time processing_start_time_=1;
