@@ -1,2 +1,3 @@
-# NIE ŚPIMY!
-Ale, zróbcie za mnie plz
+# SPANKO!
+W końcu to skończyliśmy :))))
+i wszystko działa =^.^=
