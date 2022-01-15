@@ -145,3 +145,17 @@ void generate_simulation_turn_report(const Factory& f , std::ostream& os, Time t
 //    std::string myString = ss.str();
 //    std::cout << myString << std::endl;
 }
+
+bool SpecificTurnsReportNotifier::should_generate_report(Time t) {
+    bool is_time_in_set = false;
+    if (turns_.find(t) != turns_.end())
+        is_time_in_set = true;
+    return is_time_in_set;
+}
+
+bool IntervalReportNotifier::should_generate_report(Time t) {
+    bool is_time_to_report = false;
+    if (!(t-1 % to_))
+        is_time_to_report = true;
+    return is_time_to_report;
+}
