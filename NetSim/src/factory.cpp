@@ -202,14 +202,65 @@ Factory load_factory_structure(std::istream& is){
     return new_factory;
 }
 
-
-
-
-
-
-//void save_factory_structure(Factory& factory, std::ostream& os){
-//
-//}
+void save_factory_structure(Factory& factory, std::ostream& os){
+    os << "; == LOADING RAMPS ==" << std::endl << std::endl;
+    std::for_each(factory.ramp_cbegin(),factory.ramp_cend(),[&os](const Ramp& ramp){
+        os<<"LOADING_RAMP id="<<ramp.get_id()<<" delivery-interval="<<ramp.get_delivery_interval()<<std::endl;
+    });
+    os<<std::endl<<"; == WORKERS =="<<std::endl<<std::endl;
+    std::for_each(factory.worker_cbegin(),factory.worker_cend(),[&os](const Worker& worker){
+        std::string queue_type;
+        switch (worker.get_queue()->get_queue_type()){
+            case PackageQueueType::FIFO: {
+                queue_type="FIFO";
+                break;
+            }
+            case PackageQueueType::LIFO: {
+                queue_type="LIFO";
+                break;
+            }
+        }
+        os<<"WORKER id="<<worker.get_id()<<" processing-time="<<worker.get_processing_duration()<<" queue-type="<<queue_type<<std::endl;
+    });
+    os<<std::endl<<"; == STOREHOUSES =="<<std::endl<<std::endl;
+    std::for_each(factory.storehouse_cbegin(),factory.storehouse_cend(),[&os](const Storehouse& storehouse){
+        os<<"STOREHOUSE id="<<storehouse.get_id()<<std::endl;
+    });
+    os<<std::endl<<"; == LINKS =="<<std::endl<<std::endl;
+    std::for_each(factory.ramp_cbegin(),factory.ramp_cend(),[&os](const Ramp& ramp){
+        for(auto& preferences : ramp.receiver_preferences_.get_preferences()){
+            IPackageReceiver* receiver_ptr = preferences.first;
+            switch(receiver_ptr->get_receiver_type()){
+                case ReceiverType::WORKER: {
+                    os<<"LINK src=ramp-"<<ramp.get_id()<<" dest=worker-"<<receiver_ptr->get_id()<<std::endl;
+                    break;
+                }
+                case ReceiverType::STOREHOUSE: {
+                    os<<"LINK src=ramp-"<<ramp.get_id()<<" dest=store-"<<receiver_ptr->get_id()<<std::endl;
+                    break;
+                }
+            }
+        }
+        os<<std::endl;
+    });
+    std::for_each(factory.worker_cbegin(),factory.worker_cend(),[&os](const Worker& worker){
+        for(auto& preferences : worker.receiver_preferences_.get_preferences()){
+            IPackageReceiver* receiver_ptr = preferences.first;
+            switch(receiver_ptr->get_receiver_type()){
+                case ReceiverType::WORKER: {
+                    os<<"LINK src=worker-"<<worker.get_id()<<" dest=worker-"<<receiver_ptr->get_id()<<std::endl;
+                    break;
+                }
+                case ReceiverType::STOREHOUSE: {
+                    os<<"LINK src=worker-"<<worker.get_id()<<" dest=store-"<<receiver_ptr->get_id()<<std::endl;
+                    break;
+                }
+            }
+        }
+        os<<std::endl;
+    });
+    os.flush();
+}
 
 
 

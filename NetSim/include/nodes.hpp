@@ -57,7 +57,7 @@ public:
     void add_receiver(IPackageReceiver* r);
     void remove_receiver(IPackageReceiver* r);
     IPackageReceiver* choose_receiver();
-    preferences_t get_preferences() const {return preferences_;}; //COPIED OBJECT!!! CAUTION, WET FLOOR =^.^=
+    const preferences_t& get_preferences() const {return preferences_;};
 };
 
 class PackageSender{
