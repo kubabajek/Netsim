@@ -102,12 +102,14 @@ TEST(ReportsTest, StructureReport_R2W2S2) {
     // Utwórz fabrykę.
     Factory factory;
 
-    factory.add_ramp(Ramp(1, 1));
+
     factory.add_ramp(Ramp(2, 2));
-    factory.add_worker(Worker(1, 1, std::make_unique<PackageQueue>(PackageQueueType::FIFO)));
+    factory.add_ramp(Ramp(1, 1));
     factory.add_worker(Worker(2, 2, std::make_unique<PackageQueue>(PackageQueueType::LIFO)));
-    factory.add_storehouse(Storehouse(1));
+    factory.add_worker(Worker(1, 1, std::make_unique<PackageQueue>(PackageQueueType::FIFO)));
     factory.add_storehouse(Storehouse(2));
+    factory.add_storehouse(Storehouse(1));
+
 
     Ramp& r1 = *(factory.find_ramp_by_id(1));
     r1.receiver_preferences_.add_receiver(&(*factory.find_worker_by_id(1)));

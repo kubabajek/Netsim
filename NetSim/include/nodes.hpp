@@ -37,6 +37,8 @@ public:
     const_iterator cend() const { return d_->end(); }
     explicit Storehouse(ElementID id, std::unique_ptr<IPackageStockpile> d = std::make_unique<PackageQueue>(PackageQueueType::FIFO));
     void receive_package(Package &&p) override {d_->push(std::move(p));};
+    bool operator <(const Storehouse& obj) const {return id_ < obj.get_id();
+    };
 private:
     std::unique_ptr<IPackageStockpile> d_;
 };
@@ -79,9 +81,8 @@ public:
     void deliver_goods(Time t);
     TimeOffset get_delivery_interval() const {return di_;};
     ElementID get_id() const {return id_;};
-
+    bool operator <(const Ramp& obj) const {return id_<obj.get_id();};
 private:
-
     ElementID id_;
     TimeOffset di_;
 };
@@ -99,6 +100,7 @@ public:
     void receive_package(Package&& p) override {q_->push(std::move(p));};
     IPackageQueue* get_queue() const {return &(*q_);};
     const std::optional<Package>& get_processing_buffer() const {return WorkingBuffer_;};
+    bool operator <(const Worker& obj) const {return id_<obj.get_id();};
 private:
     TimeOffset pd_;
     Time processing_start_time_=1;

@@ -10,25 +10,29 @@ void generate_structure_report(const Factory& f, std::ostream& os)
     for(auto ramp = f.ramp_cbegin(); ramp != f.ramp_cend(); ramp++)
     {
         os << "\nLOADING RAMP #" << ramp->get_id() << "\n  Delivery interval: " << ramp->get_delivery_interval() << "\n  Receivers:\n";
-        for(auto ramp_reciever = ramp->receiver_preferences_.preferences_.begin(); //for worker
-            ramp_reciever != ramp->receiver_preferences_.preferences_.end();
-            ramp_reciever++)
+
+        std::map<ElementID, IPackageReceiver*> temp_receivers_map;
+        for (auto receiver : ramp->receiver_preferences_.preferences_)
+            temp_receivers_map.insert({receiver.first->get_id(),receiver.first});
+
+
+        for (auto receiver : temp_receivers_map) //for storehouses
         {
-            std::string receiver_type = receiver_type_string[static_cast<int> (ramp_reciever->first->get_receiver_type())];
-            if(worker_t == receiver_type)
+            std::string receiver_type = receiver_type_string[static_cast<int> (receiver.second->get_receiver_type())];
+            if(storehouse_t == receiver_type)
             {
-                std::string id = std::to_string(ramp_reciever->first->get_id());
+                std::string id = std::to_string(receiver.second->get_id());
                 os << "    " << receiver_type << " #" << id << "\n";
             }
         }
-        for(auto ramp_reciever = ramp->receiver_preferences_.preferences_.begin(); //for storehouse
-            ramp_reciever != ramp->receiver_preferences_.preferences_.end();
-            ramp_reciever++)
+
+
+        for (auto receiver : temp_receivers_map) //for worker
         {
-            std::string receiver_type = receiver_type_string[static_cast<int> (ramp_reciever->first->get_receiver_type())];
-            if(storehouse_t == receiver_type)
+            std::string receiver_type = receiver_type_string[static_cast<int> (receiver.second->get_receiver_type())];
+            if(worker_t == receiver_type)
             {
-                std::string id = std::to_string(ramp_reciever->first->get_id());
+                std::string id = std::to_string(receiver.second->get_id());
                 os << "    " << receiver_type << " #" << id << "\n";
             }
         }
@@ -40,28 +44,34 @@ void generate_structure_report(const Factory& f, std::ostream& os)
     {
         std::string queue_type = queue_type_string[static_cast<int> (worker->get_queue()->get_queue_type())];
         os << "\nWORKER #" << worker->get_id() << "\n  Processing time: " << worker->get_processing_duration() << "\n  Queue type: " << queue_type << "\n  Receivers:\n";
-        for(auto worker_reciever = worker->receiver_preferences_.preferences_.begin(); //for worker
-            worker_reciever != worker->receiver_preferences_.preferences_.end();
-            worker_reciever++)
+
+        std::map<ElementID, IPackageReceiver*> temp_receivers_map;
+        for (auto receiver : worker->receiver_preferences_.preferences_)
+            temp_receivers_map.insert({receiver.first->get_id(),receiver.first});
+
+
+        for (auto receiver : temp_receivers_map) //for storehouses
         {
-            std::string receiver_type = receiver_type_string[static_cast<int> (worker_reciever->first->get_receiver_type())];
-            if(worker_t == receiver_type)
-            {
-                std::string id = std::to_string(worker_reciever->first->get_id());
-                os << "    " << receiver_type << " #" << id << "\n";
-            }
-        }
-        for(auto worker_reciever = worker->receiver_preferences_.preferences_.begin(); //for storehouse
-            worker_reciever != worker->receiver_preferences_.preferences_.end();
-            worker_reciever++)
-        {
-            std::string receiver_type = receiver_type_string[static_cast<int> (worker_reciever->first->get_receiver_type())];
+            std::string receiver_type = receiver_type_string[static_cast<int> (receiver.second->get_receiver_type())];
             if(storehouse_t == receiver_type)
             {
-                std::string id = std::to_string(worker_reciever->first->get_id());
+                std::string id = std::to_string(receiver.second->get_id());
                 os << "    " << receiver_type << " #" << id << "\n";
             }
         }
+
+
+        for (auto receiver : temp_receivers_map) //for worker
+        {
+            std::string receiver_type = receiver_type_string[static_cast<int> (receiver.second->get_receiver_type())];
+            if(worker_t == receiver_type)
+            {
+                std::string id = std::to_string(receiver.second->get_id());
+                os << "    " << receiver_type << " #" << id << "\n";
+            }
+        }
+
+
     }
     os << "\n\n== STOREHOUSES ==\n";
     for(auto storehouse = f.storehouse_cbegin(); storehouse != f.storehouse_cend(); storehouse++)

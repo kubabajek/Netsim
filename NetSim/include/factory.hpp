@@ -32,7 +32,10 @@ public:
         return std::find_if(nodes_.begin(),--nodes_.end(),[id](const auto& node){return node.get_id() == id;});
     }
 
-    void add(Node&& node){nodes_.emplace_back(std::move(node));};
+    void add(Node&& node){
+        nodes_.emplace_back(std::move(node));
+        nodes_.sort(); //using defined "<" operator in ramp, worker, storehouse classes
+    }
     bool remove_by_id(ElementID id) {
         bool if_removed_flag = false;
         const_iterator it = find_by_id(id);

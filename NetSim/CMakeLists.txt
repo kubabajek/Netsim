@@ -42,4 +42,4 @@ target_include_directories(NetSim_tests PUBLIC
 add_subdirectory(googletest-master)
 target_link_libraries(NetSim_tests gmock)
 target_compile_definitions(NetSim PUBLIC EXERCISE_ID=SIMULATION)
-target_compile_definitions(NetSim_tests PUBLIC EXERCISE_ID=SIMULATION )
+target_compile_definitions(NetSim_tests PUBLIC EXERCISE_ID=SIMULATION)
