@@ -93,19 +93,15 @@ void Ramp::deliver_goods(Time t) { //Wywolywanie w kazdej turze symulacji. Faza:
 }
 
 void Worker::do_work(Time t) {
-    if (WorkingBuffer_ == std::nullopt) {
-        if (not(q_->empty())) {
+    if (WorkingBuffer_ == std::nullopt and not(q_->empty())){
             WorkingBuffer_ = q_->pop();
             processing_start_time_ = t;
-        } else
-            WorkingBuffer_ = std::nullopt;
-    }
-    if (WorkingBuffer_ != std::nullopt)
-        if (processing_start_time_ + pd_ -1 == t) { //skonczenie pracy nad produktem (-1 żeby zwrócić produkt w odpowiednim momencie)
+        }
+    if (WorkingBuffer_.has_value() and (processing_start_time_ + pd_ -1 == t)) { //skonczenie pracy nad produktem (-1 żeby zwrócić produkt w odpowiednim momencie)
             push_package(std::move(WorkingBuffer_.value()));
             WorkingBuffer_ = std::nullopt;
         }
-}
+    }
 
 Worker::Worker(ElementID id, TimeOffset pd, std::unique_ptr<IPackageQueue> q) {
     id_=id;

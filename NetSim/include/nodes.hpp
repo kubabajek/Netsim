@@ -37,8 +37,7 @@ public:
     const_iterator cend() const { return d_->end(); }
     explicit Storehouse(ElementID id, std::unique_ptr<IPackageStockpile> d = std::make_unique<PackageQueue>(PackageQueueType::FIFO));
     void receive_package(Package &&p) override {d_->push(std::move(p));};
-    bool operator <(const Storehouse& obj) const {return id_ < obj.get_id();
-    };
+    bool operator <(const Storehouse& obj) const {return id_ < obj.get_id();};
 private:
     std::unique_ptr<IPackageStockpile> d_;
 };
